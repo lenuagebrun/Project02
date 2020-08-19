@@ -1,0 +1,44 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: rgb(214, 214, 214);
+  color: rgb(153, 153, 153);
+}
+
+#title {
+  font-family: 'Bungee Inline', cursive;
+  margin-bottom: -20px;
+  font-size: 50px;
+}
+
+.cardImage {
+  min-width: 100px;
+  max-width: 350px;
+}
+
+#search-bar {
+  background-color: rgb(158, 158, 158);
+  color:rgb(63, 63, 63);
+  border-style: none;
+  border-radius: 3px;
+  width: 90%;
+  height: 35px;
+  font-size: 24px;
+  padding-right: 9%;
+}
+
+button {
+  position: relative;
+  top: -5px;
+  margin-left: -9.2%;
+  width: 9%;
+  border: none;
+  border-radius: 3px;
+  height: 35px;
+  background: rgb(158, 158, 158);
+  color: rgb(214, 214, 214);
+}
+
+button:hover {
+  background: rgb(119, 119, 119);
+}

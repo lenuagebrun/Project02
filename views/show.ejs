@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      background: rgb(214, 214, 214);
+      color: rgb(153, 153, 153);
+      display: grid;
+      grid-template-columns: 0.5fr 1fr 0.1fr;
+      grid-template-rows: 0.1fr 1fr 1fr;
+      text-align: left;
+      animation: fade 1.3s ease forwards;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+        display: grid;
+      }
+    }
+
+    #cardImage {
+      grid-row: 2;
+      grid-column: 1;
+    }
+
+    article {
+      font-size: 30px;
+    }
+
+    #card-info {
+      grid-row: 2;
+      grid-column: 2;
+      max-width: 300px;
+      border-radius: 3px;
+    }
+
+    #card-review {
+      grid-column: 1 / span 2;
+      grid-row: 3;
+    }
+
+    a {
+      grid-column: 1;
+    }
+
+    .reviewSpace {
+      grid-column: 2;
+      grid-row: 3;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card</title>
+</head>
+
+<body>
+  <img id='cardImage' src=<%= userData.image_uris.normal %>>
+  <article id='card-info'>
+    <h4><%= userData.name %></h4>
+    <p><b>Oracle Text: </b></br><%= userData.oracle_text %></p>
+  </article>
+  <article id='card-review'>
+    <h4>Reviews</h4>
+    <form class='reviewForm' method='POST' action='/cards/<%= userData.id %>/reviews'>
+      <label>Review: </label>
+      <textarea name='reviewContent'></textarea>
+      <label>Rating: </label>
+      <select  name='rating'>
+        <option value='1'>1(Garbage)</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+        <option value='4'>4</option>
+        <option value='5'>5(Tireless Tracker)</option>
+      </select>
+      <button type='submit'>Add Review</button>
+    </form>
+    </form>
+  </article>
+  <% if (userData.reviews) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Review</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% userData.reviews.forEach(function(r) { %>
+      <tr>
+        <td><%= r.createdAt.toLocaleDateString() %></td>
+        <td><%= r.content %></td>
+        <td><%= r.rating %></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <% } else { %>
+  <h5 class='reviewSpace'>No Reviews Yet</h5>
+  <% } %>
+  <a href='/'>Main Page</a>
+</body>
+
+</html>
