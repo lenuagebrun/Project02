@@ -4,7 +4,7 @@
 <head>
   <style>
     body {
-      background: rgb(214, 214, 214);
+      background: rgb(230, 230, 230);
       color: rgb(153, 153, 153);
       display: grid;
       grid-template-columns: 0.5fr 1fr 0.1fr;
@@ -20,7 +20,6 @@
 
       to {
         opacity: 1;
-        display: grid;
       }
     }
 
@@ -41,8 +40,10 @@
     }
 
     #card-review {
-      grid-column: 1 / span 2;
+      grid-column: 1;
       grid-row: 3;
+      display: flex;
+      flex-direction: column;
     }
 
     a {
@@ -53,6 +54,7 @@
       grid-column: 2;
       grid-row: 3;
     }
+
   </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,9 +69,9 @@
   </article>
   <article id='card-review'>
     <h4>Reviews</h4>
-    <form class='reviewForm' method='POST' action='/cards/<%= userData.id %>/reviews'>
+    <form id='reviewForm' method='POST' action='/cards/<%= userData.id %>/reviews'>
       <label>Review: </label>
-      <textarea name='reviewContent'></textarea>
+      <textarea name='reviewContent'></textarea></br>
       <label>Rating: </label>
       <select  name='rating'>
         <option value='1'>1(Garbage)</option>
@@ -79,7 +81,6 @@
         <option value='5'>5(Tireless Tracker)</option>
       </select>
       <button type='submit'>Add Review</button>
-    </form>
     </form>
   </article>
   <% if (userData.reviews) { %>

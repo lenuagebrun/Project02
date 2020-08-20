@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: rgb(214, 214, 214);
+  background: rgb(230, 230, 230);
   color: rgb(153, 153, 153);
 }
 
@@ -16,6 +16,20 @@ body {
   max-width: 350px;
 }
 
+.cardImage:hover {
+  animation: fade 0.3s ease forwards;
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.8;
+  }
+}
+
 #search-bar {
   background-color: rgb(158, 158, 158);
   color:rgb(63, 63, 63);
@@ -28,17 +42,26 @@ body {
 }
 
 button {
+  background: rgb(158, 158, 158);
+  color: rgb(214, 214, 214);
+}
+
+#searchButton {
   position: relative;
   top: -5px;
   margin-left: -9.2%;
   width: 9%;
   border: none;
-  border-radius: 3px;
-  height: 35px;
-  background: rgb(158, 158, 158);
-  color: rgb(214, 214, 214);
+  border-radius: 4px;
+  height: 36px;
 }
 
 button:hover {
   background: rgb(119, 119, 119);
+}
+
+#addFavs {
+  position: relative;
+  margin-left: -100px;
+  border-radius: 4px;
 }

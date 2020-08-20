@@ -1,20 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-/*const cardSchema = new Schema({
-  name: String,
-  type: String,
-  rarity: String,
-  color: String
-})*/
-
-const reviewSchema = new Schema ({
+const reviewSchema = new Schema({
   content: String,
-  rating: {type: Number, min: 1, max: 5, default: 3}
+  rating: { type: Number, min: 1, max: 5, default: 3 }
 }, {
   timestamps: true
 });
 
+const cardSchema = new Schema({
+  apiId : String,
+  reviews: [reviewSchema]
+})
 
+var loginSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  googleId: String
+}, {
+  timestamps: true
+});
 
-CardsModel = mongoose.model('Cards', reviewSchema);
+cardsModel = mongoose.model('Cards', cardSchema);
+loginModel = mongoose.model('Login', loginSchema);
+
+module.exports = {
+  cardsModel: cardsModel,
+  loginModel: loginModel
+};

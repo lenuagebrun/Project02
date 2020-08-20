@@ -5,6 +5,7 @@ const cardsController = require('../controllers/reviews');
 const token = process.env.token;
 const rootURL = 'https://api.scryfall.com/cards/search?q=set&q=b%3Amma';
 const cardURL = 'https://api.scryfall.com/cards';
+//https://thehedronarchive.herokuapp.com/
 
 router.get('/', function (req, res, next) {
   const options = {
@@ -31,6 +32,11 @@ router.get('/cards/:id', function (req, res) {
     res.render('show', { userData: cardData })
   });
 });
+
+router.get('/search/:id', async function (req, res){
+  /*https://api.scryfall.com/cards/search?q=name=
+.replace('a', 'cat')*/
+})
 
 router.post('/cards/:id/reviews', cardsController.create);
 

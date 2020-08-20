@@ -1,15 +1,31 @@
-const Card = require('../models/card');
+const card = require('../models/card');
 
 module.exports = {
   create
 };
 
 function create(req, res) {
-  Card.findById(req.params.id, function(err, movie) {
-    //The moviesCtrl.show action is using Movie.findById method to retrieve the movie doc with an id of req.params.id.
-    card.reviews.push(req.body);
-    card.save(function(err) {
-      res.redirect(`/cards/${card._id}`);
-    });
+  card.cardsModel.findOne({ apiId: req.params.id }, async function (err, dbCard) {
+    if (dbCard) {
+      let reviewObject = {
+        content: req.body.reviewContent,
+        rating: req.body.rating
+      };
+      dbCard.reviews.push(reviewObject);
+      let saveResults =  await dbCard.save();
+      console.log('card found');
+      console.log(dbCard);
+    } else {
+      let reviewObject = {
+        content: req.body.reviewContent,
+        rating: req.body.rating
+      };
+      let reviewArray = []
+      reviewArray.push(reviewObject)
+      let results = await card.cardsModel.create({ apiId: req.params.id, reviews: reviewArray  })
+      console.log(results)
+    }
   });
+  console.log(req.body.reviewContent, req.body.rating, req.params.id);
+  res.send('big thank');
 }

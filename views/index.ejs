@@ -7,13 +7,13 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
-<body class="container">
+<body>
   <h1 id='title'>The Hedron Archive</h1>
   <div class='card search'>
     <form action='/' method='GET'>
       <input id='search-bar' type='text' name='cardSearch'
         placeholder='Search for a card here(name, color, type, rarity)...'>
-        <button type='submit'><b>Search</b></button>
+      <button id='searchButton' type='submit'><b>Search</b></button>
     </form>
   </div>
   <hr>
@@ -22,12 +22,15 @@
     <% userData.data.forEach(function(t) { %>
     <a href='cards/<%= t.id %>'> <img class='cardImage' src=<%= t.image_uris.normal %>>
     </a>
-      <% }); %>
-      <% } else { %>
-      <h3 class="text-center text-info">
-        no cards are showing
-      </h3>
-      <% } %>
+    <form>
+      <button id='addFavs'>Add to Favorites</button>
+    </form>
+    <% }); %>
+    <% } else { %>
+    <h3 class="text-center text-info">
+      no cards are showing
+    </h3>
+    <% } %>
   </div>
 </body>
 
