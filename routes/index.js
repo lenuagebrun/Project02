@@ -7,7 +7,7 @@ const { cardsModel } = require('../models/card');
 const token = process.env.token;
 const rootURL = 'https://api.scryfall.com/cards/search?q=set&q=b%3Amma';
 const cardURL = 'https://api.scryfall.com/cards';
-//https://thehedronarchive.herokuapp.com/
+//https://thehedronarchive.herokuapp.com/ for the heroku link
 
 router.get('/', function (req, res, next) {
   const options = {
