@@ -22,9 +22,6 @@
     <% userData.data.forEach(function(t) { %>
     <a href='cards/<%= t.id %>'> <img class='cardImage' src=<%= t.image_uris.normal %>>
     </a>
-    <form>
-      <button id='addFavs'>Add to Favorites</button>
-    </form>
     <% }); %>
     <% } else { %>
     <h3 class="text-center text-info">

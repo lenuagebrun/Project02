@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const request = require('request');
 const cardsController = require('../controllers/reviews');
+const { connection } = require('mongoose');
+const { cardsModel } = require('../models/card');
 const token = process.env.token;
 const rootURL = 'https://api.scryfall.com/cards/search?q=set&q=b%3Amma';
 const cardURL = 'https://api.scryfall.com/cards';
@@ -27,16 +29,12 @@ router.get('/cards/:id', function (req, res) {
       Authorization: `token ${token}`
     }
   };
-  request(options, function (err, response, body) {
+  request(options, async function (err, response, body) {
     let cardData = JSON.parse(body);
-    res.render('show', { userData: cardData })
-  });
+    let cardDatabase = await cardsModel.findOne({ apiId: req.params.id });
+    res.render('show', { userData: cardData, cardDatabase: cardDatabase })
+  });  
 });
-
-router.get('/search/:id', async function (req, res){
-  /*https://api.scryfall.com/cards/search?q=name=
-.replace('a', 'cat')*/
-})
 
 router.post('/cards/:id/reviews', cardsController.create);
 

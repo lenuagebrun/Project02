@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const rootURL = 'https://api.scryfall.com/cards/search?q=set&q=b%3Amma';
+const cardsController = require('../controllers/reviews');
 
-router.get('/:id', function(req,res){
-    res.render('show')
-})
+router.get('/:id', cardsController.show)
 
 module.exports = router;

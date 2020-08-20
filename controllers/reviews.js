@@ -1,7 +1,8 @@
 const card = require('../models/card');
 
 module.exports = {
-  create
+  create,
+  show
 };
 
 function create(req, res) {
@@ -12,9 +13,7 @@ function create(req, res) {
         rating: req.body.rating
       };
       dbCard.reviews.push(reviewObject);
-      let saveResults =  await dbCard.save();
-      console.log('card found');
-      console.log(dbCard);
+      let saveResults = await dbCard.save();
     } else {
       let reviewObject = {
         content: req.body.reviewContent,
@@ -22,10 +21,15 @@ function create(req, res) {
       };
       let reviewArray = []
       reviewArray.push(reviewObject)
-      let results = await card.cardsModel.create({ apiId: req.params.id, reviews: reviewArray  })
+      let results = await card.cardsModel.create({ apiId: req.params.id, reviews: reviewArray })
       console.log(results)
     }
   });
-  console.log(req.body.reviewContent, req.body.rating, req.params.id);
-  res.send('big thank');
+  res.redirect(`/cards/${req.params.id}`)
+}
+
+function show(req, res) {
+  card.findById(req.params.id, function(err, cardReview){
+    res.render('show', {cardReview})
+  })
 }
