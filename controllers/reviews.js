@@ -13,7 +13,6 @@ function create(req, res) {
         rating: req.body.rating
       };
       dbCard.reviews.push(reviewObject);
-      let saveResults = await dbCard.save();
     } else {
       let reviewObject = {
         content: req.body.reviewContent,
